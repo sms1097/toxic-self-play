@@ -36,7 +36,7 @@ def main():
     max_steps = 50  # Number of training steps
     warmup_ratio = 0.03  # Portion of steps used for learning_rate to warmup from 0
     lr_scheduler_type = "cosine"
-    sanity_check = True
+    sanity_check = False
 
     ds = build_dataset(sanity_check=sanity_check)
 
@@ -81,8 +81,9 @@ def main():
         push_to_hub=True,
         report_to="none",
     )
+
     trainer = DPOTrainer(
-        peft_model,
+        # peft_model,
         peft_model,
         train_dataset=ds["train"],
         eval_dataset=ds["test"],
